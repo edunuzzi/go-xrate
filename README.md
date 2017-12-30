@@ -19,6 +19,12 @@ Here's the supported list (We are constantly adding more and more):
 - [Mercado Bitcoin](https://wwww.mercadobitcoin.com.br) 
 - [BitcoinTrade](https://bitcointrade.com.br)
 
+## Supported Cryptocurrencies
+
+- BTC: Bitcoin
+- LTC: Litecoin
+- BCH: Bitcoin Cash
+
 ## Usage
 It's really simple to get started.
 
