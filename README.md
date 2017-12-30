@@ -90,5 +90,5 @@ In the case of a exchange not supporting a specific field, we fill it with a 'fa
 - [ ] Tests
 - [ ] Other useful statistics from a specific cryptocurrency and/or exchange
 
-## Support
+## Contribution
 Please feel free to contribute with both suggestions and new code :D
