@@ -16,7 +16,7 @@ As of now, only exchanges from Brazil are supported. But the code is prepared to
 
 Here's the supported list (We are constantly adding more and more):
 - [FoxBit](https://foxbit.exchange)
-- [Mercado Bitcoin](https://wwww.mercadobitcoin.com.br) 
+- [Mercado Bitcoin](https://mercadobitcoin.com.br) 
 - [BitcoinTrade](https://bitcointrade.com.br)
 - [Bitcoin To You](https://bitcointoyou.com)
 
