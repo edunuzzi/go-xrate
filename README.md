@@ -46,9 +46,9 @@ xrbr.NewFoxBitCrawler().BTC()
 // Mercado Bitcoin - Bitcoin Cash
 xrbr.NewMercadoBitcoinCrawler().BCH()
  
- // OR 
- // Mercado Bitcoin - Litecoin
- xrbr.NewMercadoBitcoinCrawler().LTC()
+// OR 
+// Mercado Bitcoin - Litecoin
+xrbr.NewMercadoBitcoinCrawler().LTC()
  
 // OR 
 // BitcoinTrade - Bitcoin
@@ -63,13 +63,13 @@ xrbr.NewBitcoinToYouCrawler().BTC()
 #### NewFoxBitCrawler() FoxBitCrawler
 Creates and returns a new FoxBitCrawler
 
-###### Methods:
+##### Methods:
 - BTC() CryptoCurrencyTicker
 
 #### NewMercadoBitcoinCrawler() MercadoBitcoinCrawler
 Creates and returns a new MercadoBitcoinCrawler
 
-###### Methods:
+##### Methods:
 - BTC() CryptoCurrencyTicker
 - LTC() CryptoCurrencyTicker
 - BCH() CryptoCurrencyTicker
@@ -77,13 +77,13 @@ Creates and returns a new MercadoBitcoinCrawler
 #### NewBitcoinTradeCrawler() BitcoinTradeCrawler
 Creates and returns a new BitcoinTradeCrawler
 
-###### Methods:
+##### Methods:
 - BTC() CryptoCurrencyTicker
 
 #### NewBitcoinToYouCrawler() BitcoinToYouCrawler
 Creates and returns a new BitcoinToYouCrawler
 
-###### Methods:
+##### Methods:
 - BTC() CryptoCurrencyTicker
 
 ## Methods response
