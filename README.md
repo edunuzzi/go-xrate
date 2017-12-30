@@ -23,7 +23,7 @@ Here's the supported list (We are constantly adding more and more):
 It's really simple to get started.
 
 ##### First, you import the package:
-```
+```go
 // Here we are importing from the brazilian package of exchanges
 import (
     xrbr "go-xrate/exchanges/br"
@@ -31,7 +31,7 @@ import (
 ```
 
 #####And finally, instantiate a new ExchangeCrawler and call the specific method for the cryptocurrency you want:
-```
+```go
 // FoxBit - BTC
 xrbr.NewFoxBitCrawler().BTC()
   
@@ -66,7 +66,7 @@ Creates and returns a new BitcoinTradeCrawler
 - BTC() xrate.CryptoCurrencyTicker
 
 All methods return a xrate.CryptoCurrencyTicker:
-```
+```go
 type CryptoCurrencyTicker struct {
 	Acronym             CryptoCurrencyAcronym
 	FiatCurrencyAcronym FiatCurrencyAcronym
@@ -82,5 +82,10 @@ type CryptoCurrencyTicker struct {
 
 In case when a exchange does not returns a specific field, it is set to it's 'falsy' value. (E.g. float32 -> 0.0)
 
+### TODO
+- [ ] More Exchanges (From both Brazil and other countries)
+- [ ] Tests
+- [ ] Other useful statistics from a specific cryptocurrency and/or exchange
+
 ### Support
-Please feel free to give suggestions for improvements and implement any specific exchange code you may need. We are open to well written pull requests :P
+Please feel free to contribute with both suggestions and new code :D
