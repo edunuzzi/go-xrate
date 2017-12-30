@@ -6,7 +6,7 @@ go-xrate is a small lib for getting cryptocurrency rates from several Exchanges 
 
 To install, just run 
 
-`go get github.com/Swipecoin/go-xrate`
+`go get github.com/swipecoin/go-xrate`
 
 It doesn't rely on any external lib :D
   
