@@ -68,7 +68,9 @@ Creates and returns a new BitcoinTradeCrawler
 All methods return a CryptoCurrencyTicker:
 ```go
 type CryptoCurrencyTicker struct {
+                        // BTC or BCH or LTC
 	Acronym             CryptoCurrencyAcronym
+                        // BRL
 	FiatCurrencyAcronym FiatCurrencyAcronym
 	Last                float32
 	High24h             float32
