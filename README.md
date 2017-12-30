@@ -80,7 +80,7 @@ type CryptoCurrencyTicker struct {
 }
 ```
 
-In case when a exchange does not returns a specific field, it is set to it's 'falsy' value. (E.g. float32 -> 0.0)
+In the case of a exchange not supporting a specific field, we return it with a 'falsy' value. (E.g. float32 -> 0.0)
 
 ## TODO
 - [ ] More Exchanges (From both Brazil and other countries)
