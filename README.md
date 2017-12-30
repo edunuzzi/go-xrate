@@ -103,6 +103,7 @@ In the case of a exchange not supporting a specific field, we fill it with a 'fa
 ## TODO
 - [ ] More Exchanges (From both Brazil and other countries)
 - [ ] Tests
+- [ ] Better error handling
 - [ ] Other useful statistics from a specific cryptocurrency and/or exchange
 
 ## Contribution
