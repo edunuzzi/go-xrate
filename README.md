@@ -39,23 +39,23 @@ import (
 
 ##### Then, instantiate a new ExchangeCrawler and call the specific method for the cryptocurrency you want:
 ```go
-// FoxBit - BTC
+// FoxBit - Bitcoin
 xrbr.NewFoxBitCrawler().BTC()
   
 // OR 
-// Mercado Bitcoin - BCH
+// Mercado Bitcoin - Bitcoin Cash
 xrbr.NewMercadoBitcoinCrawler().BCH()
  
  // OR 
- // Mercado Bitcoin - LTC
+ // Mercado Bitcoin - Litecoin
  xrbr.NewMercadoBitcoinCrawler().LTC()
  
 // OR 
-// BitcoinTrade - BTC
+// BitcoinTrade - Bitcoin
 xrbr.NewBitcoinTradeCrawler().BTC()
  
 // OR 
-// Bitcoin To You - BTC
+// Bitcoin To You - Bitcoin
 xrbr.NewBitcoinToYouCrawler().BTC()
 ```
 
