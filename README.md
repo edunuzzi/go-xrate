@@ -71,7 +71,7 @@ Creates and returns a new BitcoinTradeCrawler
 ###### Methods:
 - BTC() CryptoCurrencyTicker
 
-#### Methods response
+## Methods response
 All methods return a CryptoCurrencyTicker, with fields:
 - **Acronym**: Cryptocurrency acronym. (BTC, BCH or LTC)
 - **FiatCurrencyAcronym**: Fiat currency acronym. (BRL, USD)
