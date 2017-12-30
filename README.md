@@ -60,13 +60,13 @@ xrbr.NewBitcoinToYouCrawler().BTC()
 ```
 
 ## API
-#### NewFoxBitCrawler() FoxBitCrawler
+### NewFoxBitCrawler() FoxBitCrawler
 Creates and returns a new FoxBitCrawler
 
 ##### Methods:
 - BTC() CryptoCurrencyTicker
 
-#### NewMercadoBitcoinCrawler() MercadoBitcoinCrawler
+### NewMercadoBitcoinCrawler() MercadoBitcoinCrawler
 Creates and returns a new MercadoBitcoinCrawler
 
 ##### Methods:
@@ -74,13 +74,13 @@ Creates and returns a new MercadoBitcoinCrawler
 - LTC() CryptoCurrencyTicker
 - BCH() CryptoCurrencyTicker
 
-#### NewBitcoinTradeCrawler() BitcoinTradeCrawler
+### NewBitcoinTradeCrawler() BitcoinTradeCrawler
 Creates and returns a new BitcoinTradeCrawler
 
 ##### Methods:
 - BTC() CryptoCurrencyTicker
 
-#### NewBitcoinToYouCrawler() BitcoinToYouCrawler
+### NewBitcoinToYouCrawler() BitcoinToYouCrawler
 Creates and returns a new BitcoinToYouCrawler
 
 ##### Methods:
