@@ -66,24 +66,18 @@ Creates and returns a new BitcoinTradeCrawler
 - BTC() CryptoCurrencyTicker
 
 #### Methods response
-All methods return a CryptoCurrencyTicker:
-```go
-type CryptoCurrencyTicker struct {
-    // BTC or BCH or LTC
-	Acronym             CryptoCurrencyAcronym
-    // BRL
-	FiatCurrencyAcronym FiatCurrencyAcronym
-	Last                float32
-	High24h             float32
-	Low24h              float32
-	Volume24h           float32
-	VolumeFiat24h       float32
-	RecentBuyOrder      float32
-	RecentSellOrder     float32
-}
-```
+All methods return a CryptoCurrencyTicker, with fields:
+- **Acronym**: Cryptocurrency acronym. (BTC, BCH or LTC)
+- **FiatCurrencyAcronym**: Fiat currency acronym. (BRL, USD)
+- **Last**: Value of the last price
+- **High24h**: Price of the highest order in the last 24 hours
+- **Low24h**: Price of the lowest order in the last 24 hours
+- **Volume24h**: Trading volume in the last 24 hours
+- **VolumeFiat24h**: Fiat trading volume in the last 24 hours (Not supported by all)
+- **RecentBuyOrder**: Price of the most recent buy order
+- **RecentSellOrder**: Price of the most recent sell order
 
-In the case of a exchange not supporting a specific field, we return it with a 'falsy' value. (E.g. float32 -> 0.0)
+In the case of a exchange not supporting a specific field, we fill it with a 'falsy' value. (E.g. float32 -> 0.0)
 
 ## TODO
 - [ ] More Exchanges (From both Brazil and other countries)
