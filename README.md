@@ -2,7 +2,7 @@
 
 go-xrate is a small lib for getting cryptocurrency rates from several Exchanges around the world.
 
-### Install
+## Install
 
 To install, just run 
 
@@ -10,7 +10,7 @@ To install, just run
 
 It doesn't rely on any external lib :D
   
-###Supported Exchanges
+## Supported Exchanges
 
 As of now, only exchanges from Brazil are supported. But the code is prepared to work with multiple countries, fiat currencies and cryptocurrencies. 
 
@@ -19,7 +19,7 @@ Here's the supported list (We are constantly adding more and more):
 - [Mercado Bitcoin](https://wwww.mercadobitcoin.com.br) 
 - [BitcoinTrade](https://bitcointrade.com.br)
 
-### Usage
+## Usage
 It's really simple to get started.
 
 ##### First, you import the package:
@@ -30,7 +30,7 @@ import (
 )
 ```
 
-#####And finally, instantiate a new ExchangeCrawler and call the specific method for the cryptocurrency you want:
+##### Then, instantiate a new ExchangeCrawler and call the specific method for the cryptocurrency you want:
 ```go
 // FoxBit - BTC
 xrbr.NewFoxBitCrawler().BTC()
@@ -44,28 +44,28 @@ xrbr.NewMercadoBitcoinCrawler().BCH()
 xrbr.NewBitcoinTradeCrawler().BTC()
 ```
 
-### API
+## API
 #### NewFoxBitCrawler() FoxBitCrawler
 Creates and returns a new FoxBitCrawler
 
 ###### Methods:
-- BTC() xrate.CryptoCurrencyTicker
+- BTC() CryptoCurrencyTicker
 
 #### NewMercadoBitcoinCrawler() MercadoBitcoinCrawler
 Creates and returns a new MercadoBitcoinCrawler
 
 ###### Methods:
-- BTC() xrate.CryptoCurrencyTicker
-- LTC() xrate.CryptoCurrencyTicker
-- BCH() xrate.CryptoCurrencyTicker
+- BTC() CryptoCurrencyTicker
+- LTC() CryptoCurrencyTicker
+- BCH() CryptoCurrencyTicker
 
 #### NewBitcoinTradeCrawler() BitcoinTradeCrawler
 Creates and returns a new BitcoinTradeCrawler
 
 ###### Methods:
-- BTC() xrate.CryptoCurrencyTicker
+- BTC() CryptoCurrencyTicker
 
-All methods return a xrate.CryptoCurrencyTicker:
+All methods return a CryptoCurrencyTicker:
 ```go
 type CryptoCurrencyTicker struct {
 	Acronym             CryptoCurrencyAcronym
@@ -82,10 +82,10 @@ type CryptoCurrencyTicker struct {
 
 In case when a exchange does not returns a specific field, it is set to it's 'falsy' value. (E.g. float32 -> 0.0)
 
-### TODO
+## TODO
 - [ ] More Exchanges (From both Brazil and other countries)
 - [ ] Tests
 - [ ] Other useful statistics from a specific cryptocurrency and/or exchange
 
-### Support
+## Support
 Please feel free to contribute with both suggestions and new code :D
