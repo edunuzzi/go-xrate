@@ -75,7 +75,7 @@ Creates and returns a new BitcoinTradeCrawler
 All methods return a CryptoCurrencyTicker, with fields:
 - **Acronym**: Cryptocurrency acronym. (BTC, BCH or LTC)
 - **FiatCurrencyAcronym**: Fiat currency acronym. (BRL, USD)
-- **Last**: Value of the last price
+- **Last**: Value of the last order
 - **High24h**: Price of the highest order in the last 24 hours
 - **Low24h**: Price of the lowest order in the last 24 hours
 - **Volume24h**: Trading volume in the last 24 hours
