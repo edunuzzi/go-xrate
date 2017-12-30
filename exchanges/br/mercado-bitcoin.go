@@ -4,7 +4,7 @@ import (
 	"go-xrate"
 )
 
-type Ticker struct {
+type MBTicker struct {
 	High string `json:"high"`
 	Low  string `json:"low"`
 	Vol  string `json:"vol"`
@@ -14,7 +14,7 @@ type Ticker struct {
 }
 
 type MercadoBitcoinResponseBody struct {
-	Ticker `json:"ticker"`
+	Ticker MBTicker `json:"ticker"`
 }
 
 type MercadoBitcoinCrawler struct {
