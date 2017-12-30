@@ -18,6 +18,7 @@ Here's the supported list (We are constantly adding more and more):
 - [FoxBit](https://foxbit.exchange)
 - [Mercado Bitcoin](https://wwww.mercadobitcoin.com.br) 
 - [BitcoinTrade](https://bitcointrade.com.br)
+- [Bitcoin To You](https://bitcointoyou.com)
 
 ## Supported Cryptocurrencies
 
@@ -45,9 +46,17 @@ xrbr.NewFoxBitCrawler().BTC()
 // Mercado Bitcoin - BCH
 xrbr.NewMercadoBitcoinCrawler().BCH()
  
+ // OR 
+ // Mercado Bitcoin - LTC
+ xrbr.NewMercadoBitcoinCrawler().LTC()
+ 
 // OR 
 // BitcoinTrade - BTC
 xrbr.NewBitcoinTradeCrawler().BTC()
+ 
+// OR 
+// Bitcoin To You - BTC
+xrbr.NewBitcoinToYouCrawler().BTC()
 ```
 
 ## API
@@ -71,10 +80,16 @@ Creates and returns a new BitcoinTradeCrawler
 ###### Methods:
 - BTC() CryptoCurrencyTicker
 
+#### NewBitcoinToYouCrawler() BitcoinToYouCrawler
+Creates and returns a new BitcoinToYouCrawler
+
+###### Methods:
+- BTC() CryptoCurrencyTicker
+
 ## Methods response
 All methods return a CryptoCurrencyTicker, with fields:
 - **Acronym**: Cryptocurrency acronym. (BTC, BCH or LTC)
-- **FiatCurrencyAcronym**: Fiat currency acronym. (BRL, USD)
+- **FiatCurrencyAcronym**: Fiat currency acronym. (BRL or USD)
 - **Last**: Price of the last order
 - **High24h**: Price of the highest order in the last 24 hours
 - **Low24h**: Price of the lowest order in the last 24 hours
