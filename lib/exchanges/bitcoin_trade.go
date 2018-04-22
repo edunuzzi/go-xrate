@@ -40,13 +40,13 @@ func BitcoinTrade() xrate.Exchange {
 	}
 }
 
-func (m *bitcoinTrade) GetTickerURL(c currency.Currency) (string, error) {
+func (m *bitcoinTrade) getTickerURL(c currency.Currency) (string, error) {
 
 	if !m.supportsCurrency(c) {
 		return "", fmt.Errorf("exchange 'Bitcoin Trade' does not support %s", c.Name)
 	}
 
-	return m.BaseApiURL+"/"+string(c.Acronym)+"/ticker", nil
+	return m.BaseApiURL + "/" + string(c.Acronym) + "/ticker", nil
 }
 
 func (m *bitcoinTrade) supportsCurrency(c currency.Currency) bool {
@@ -55,5 +55,6 @@ func (m *bitcoinTrade) supportsCurrency(c currency.Currency) bool {
 }
 
 func (m *bitcoinTrade) getName() xrate.ExchangeName {
+
 	return m.Name
 }

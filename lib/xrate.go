@@ -11,8 +11,8 @@ func NewBTCCrawler(exchanges ...Exchange) (*crawler, error) {
 
 	for _, e := range crawler.exchanges {
 
-		if !e.supportsCurrency(crawler.Currency) {
-			return nil, fmt.Errorf("exchange '%s' does not support currency %s", e.getName(), crawler.Currency.Name)
+		if !e.supportsCurrency(crawler.currency) {
+			return nil, fmt.Errorf("exchange '%s' does not support currency %s", e.getName(), crawler.currency.Name)
 		}
 	}
 

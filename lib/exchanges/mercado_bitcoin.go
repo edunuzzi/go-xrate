@@ -31,13 +31,13 @@ func MercadoBitcoin() xrate.Exchange {
 	}
 }
 
-func (m *mercadoBitcoin) GetTickerURL(c currency.Currency) (string, error) {
+func (m *mercadoBitcoin) getTickerURL(c currency.Currency) (string, error) {
 
 	if !m.supportsCurrency(c) {
 		return "", fmt.Errorf("exchange 'Mercado Bitcoin' does not support %s", c.Name)
 	}
 
-	return m.BaseApiURL+"/"+string(c.Acronym)+"/ticker", nil
+	return m.BaseApiURL + "/" + string(c.Acronym) + "/ticker", nil
 }
 
 func (m *mercadoBitcoin) supportsCurrency(c currency.Currency) bool {
@@ -46,5 +46,6 @@ func (m *mercadoBitcoin) supportsCurrency(c currency.Currency) bool {
 }
 
 func (m *mercadoBitcoin) getName() xrate.ExchangeName {
+
 	return m.Name
 }

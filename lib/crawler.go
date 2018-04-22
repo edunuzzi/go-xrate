@@ -17,7 +17,7 @@ type CrawlerResponse struct {
 }
 
 type crawler struct {
-	currency.Currency
+	currency currency.Currency
 	exchanges []Exchange
 }
 

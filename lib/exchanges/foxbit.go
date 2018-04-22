@@ -31,13 +31,13 @@ func Foxbit() xrate.Exchange {
 	}
 }
 
-func (m *foxbit) GetTickerURL(c currency.Currency) (string, error) {
+func (m *foxbit) getTickerURL(c currency.Currency) (string, error) {
 
 	if !m.supportsCurrency(c) {
 		return "", fmt.Errorf("exchange 'Foxbit' does not support %s", c.Name)
 	}
 
-	return m.BaseApiURL+"/ticker?crypto_currency="+string(c.Acronym), nil
+	return m.BaseApiURL + "/ticker?crypto_currency=" + string(c.Acronym), nil
 }
 
 func (m *foxbit) supportsCurrency(c currency.Currency) bool {
@@ -46,5 +46,6 @@ func (m *foxbit) supportsCurrency(c currency.Currency) bool {
 }
 
 func (m *foxbit) getName() xrate.ExchangeName {
+
 	return m.Name
 }
