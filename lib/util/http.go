@@ -1,33 +1,29 @@
 package util
 
 import (
-	"fmt"
 	"io/ioutil"
 	"encoding/json"
 	"net/http"
 )
 
-func BaseGet(url string, res interface{}) {
+func BaseGet(url string, res interface{}) error {
 	response, err := http.Get(url)
 
 	if err != nil {
-		fmt.Println(err)
-		panic(err)
+		return err
 	}
 
 	defer response.Body.Close()
 
-	body, bodyErr := ioutil.ReadAll(response.Body)
+	body, err := ioutil.ReadAll(response.Body)
 
-	if bodyErr != nil {
-		fmt.Println(bodyErr)
-		panic(bodyErr)
+	if err != nil {
+		return err
 	}
 
-	jsonErr := json.Unmarshal(body, &res)
+	err = json.Unmarshal(body, &res)
 
-	if jsonErr != nil {
-		fmt.Println(jsonErr)
-		panic(jsonErr)
+	if err != nil {
+		return err
 	}
 }
