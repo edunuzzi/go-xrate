@@ -1,9 +1,5 @@
 package br
 
-import (
-	"go-xrate"
-)
-
 type BTTicker struct {
 	High float32 `json:"high"`
 	Low  float32 `json:"low"`
