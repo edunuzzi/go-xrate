@@ -9,7 +9,7 @@ import (
 const UnsupportedField float32 = -1
 
 type CrawlerResponse struct {
-	Exchange            ExchangeParams    `json:"exchange,omitempty"`
+	Exchange           ExchangeParams    `json:"exchange,omitempty"`
 	CryptoCurrency     currency.Currency `json:"crypto_currency,omitempty"`
 	FiatCurrency       currency.Currency `json:"fiat_currency,omitempty"`
 	Last               float32           `json:"last,omitempty"`
@@ -72,8 +72,8 @@ func (c *crawler) Rates(timeout time.Duration) ([]CrawlerResponse, []error) {
 	}
 
 	for range c.exchanges {
-		res := <- resChan
-		err := <- errChan
+		res := <-resChan
+		err := <-errChan
 
 		if res != nil {
 			resList = append(resList, *res)
@@ -86,5 +86,3 @@ func (c *crawler) Rates(timeout time.Duration) ([]CrawlerResponse, []error) {
 
 	return resList, errList
 }
-
-
