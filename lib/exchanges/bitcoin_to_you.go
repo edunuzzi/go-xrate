@@ -11,7 +11,7 @@ import (
 )
 
 const (
-	BitcoinToYouName xrate.ExchangeName = "bitcoinToYou"
+	BitcoinToYouName xrate.ExchangeName = "BitcoinToYou"
 )
 
 type BTYTicker struct {
@@ -46,7 +46,7 @@ func BitcoinToYou() xrate.Exchange {
 	}
 }
 
-func (bty *bitcoinToYou) GetTickerURL(cc currency.Currency) (string, error) {
+func (bty *bitcoinToYou) GetTickerURL(cc currency.Currency, _ currency.Currency) (string, error) {
 
 	if !bty.SupportsCryptoCurrency(cc) {
 		return "", fmt.Errorf("exchange 'Bitcointoyou' does not support %s", cc.Name)
@@ -80,16 +80,34 @@ func (bty *bitcoinToYou) ConvertToResponse(cc currency.Currency, fc currency.Cur
 		return nil, err
 	}
 
+	last, err := util.StringToFloat32(res.Ticker.Last)
+	if err != nil { return nil, err }
+
+	high, err := util.StringToFloat32(res.Ticker.High)
+	if err != nil { return nil, err }
+
+	low, err := util.StringToFloat32(res.Ticker.Low)
+	if err != nil { return nil, err }
+
+	vol, err := util.StringToFloat32(res.Ticker.Vol)
+	if err != nil { return nil, err }
+
+	bid, err := util.StringToFloat32(res.Ticker.Buy)
+	if err != nil { return nil, err }
+
+	ask, err := util.StringToFloat32(res.Ticker.Sell)
+	if err != nil { return nil, err }
+
 	return &xrate.CrawlerResponse{
-		Exchange:            bty.ExchangeParams,
-		CryptoCurrency:      cc,
-		FiatCurrency:        fc,
-		Last:                util.StringToFloat32(res.Ticker.Last),
-		High24h:             util.StringToFloat32(res.Ticker.High),
-		Low24h:              util.StringToFloat32(res.Ticker.Low),
-		Volume24h:           util.StringToFloat32(res.Ticker.Vol),
-		VolumeFiat24h:       xrate.UnsupportedField,
-		MostRecentBuyOrder:  util.StringToFloat32(res.Ticker.Buy),
-		MostRecentSellOrder: util.StringToFloat32(res.Ticker.Sell),
+		Exchange:           bty.ExchangeParams,
+		CryptoCurrency:     cc,
+		FiatCurrency:       fc,
+		Last:               last,
+		High24h:            high,
+		Low24h:             low,
+		Volume24h:          vol,
+		VolumeFiat24h:      xrate.UnsupportedField,
+		MostRecentBidOrder: bid,
+		MostRecentAskOrder: ask,
 	}, nil
 }

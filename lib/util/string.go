@@ -1,15 +1,15 @@
 package util
 
 import (
-	"fmt"
 	"strconv"
 )
 
-func StringToFloat32(str string) float32 {
+func StringToFloat32(str string) (float32, error) {
 	value, err := strconv.ParseFloat(str, 32)
+
 	if err != nil {
-		fmt.Println(err)
-		panic(err)
+		return 0, err
 	}
-	return float32(value)
+
+	return float32(value), nil
 }

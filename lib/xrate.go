@@ -16,8 +16,12 @@ func NewBTCCrawler(fiatCurrency currency.Currency, exchanges ...Exchange) (*craw
 
 	for _, e := range crawler.exchanges {
 
-		if !e.SupportsCryptoCurrency(crawler.cryptoCurrency) || !e.SupportsFiatCurrency(crawler.fiatCurrency) {
+		if !e.SupportsCryptoCurrency(crawler.cryptoCurrency) {
 			return nil, fmt.Errorf("exchange '%s' does not support currency %s", e.GetName(), crawler.cryptoCurrency.Name)
+		}
+
+		if !e.SupportsFiatCurrency(crawler.fiatCurrency) {
+			return nil, fmt.Errorf("exchange '%s' does not support currency %s", e.GetName(), crawler.fiatCurrency.Name)
 		}
 	}
 

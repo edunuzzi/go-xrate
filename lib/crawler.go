@@ -10,15 +10,15 @@ const UnsupportedField float32 = -1
 
 type CrawlerResponse struct {
 	Exchange            ExchangeParams    `json:"exchange,omitempty"`
-	CryptoCurrency      currency.Currency `json:"crypto_currency,omitempty"`
-	FiatCurrency        currency.Currency `json:"fiat_currency,omitempty"`
-	Last                float32           `json:"last,omitempty"`
-	High24h             float32           `json:"high_24h,omitempty"`
-	Low24h              float32           `json:"low_24h,omitempty"`
-	Volume24h           float32           `json:"volume_24h,omitempty"`
-	VolumeFiat24h       float32           `json:"volume_fiat_24h,omitempty"`
-	MostRecentBuyOrder  float32           `json:"most_recent_buy_order,omitempty"`
-	MostRecentSellOrder float32           `json:"most_recent_sell_order,omitempty"`
+	CryptoCurrency     currency.Currency `json:"crypto_currency,omitempty"`
+	FiatCurrency       currency.Currency `json:"fiat_currency,omitempty"`
+	Last               float32           `json:"last,omitempty"`
+	High24h            float32           `json:"high_24h,omitempty"`
+	Low24h             float32           `json:"low_24h,omitempty"`
+	Volume24h          float32           `json:"volume_24h,omitempty"`
+	VolumeFiat24h      float32           `json:"volume_fiat_24h,omitempty"`
+	MostRecentBidOrder float32           `json:"most_recent_bid_order,omitempty"`
+	MostRecentAskOrder float32           `json:"most_recent_ask_order,omitempty"`
 }
 
 type crawler struct {
@@ -31,7 +31,7 @@ func (c *crawler) Rates(timeout time.Duration) ([]CrawlerResponse, []error) {
 
 	fetch := func(resChan chan *CrawlerResponse, errChan chan error, e Exchange) {
 
-		tickerUrl, err := e.GetTickerURL(c.cryptoCurrency)
+		tickerUrl, err := e.GetTickerURL(c.cryptoCurrency, c.fiatCurrency)
 
 		if err != nil {
 			errChan <- err

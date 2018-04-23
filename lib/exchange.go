@@ -15,7 +15,7 @@ type ExchangeParams struct {
 }
 
 type Exchange interface {
-	GetTickerURL(cryptoCurrency currency.Currency) (string, error)
+	GetTickerURL(cryptoCurrency currency.Currency, fiatCurrency currency.Currency) (string, error)
 	SupportsFiatCurrency(f currency.Currency) bool
 	SupportsCryptoCurrency(c currency.Currency) bool
 	GetName() ExchangeName

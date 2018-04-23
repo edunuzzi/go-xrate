@@ -10,7 +10,7 @@ import (
 )
 
 const (
-	FoxbitName xrate.ExchangeName = "foxbit"
+	FoxbitName xrate.ExchangeName = "Foxbit"
 )
 
 type FoxbitTickerResponseBody struct {
@@ -42,7 +42,7 @@ func Foxbit() xrate.Exchange {
 	}
 }
 
-func (f *foxbit) GetTickerURL(c currency.Currency) (string, error) {
+func (f *foxbit) GetTickerURL(c currency.Currency, _ currency.Currency) (string, error) {
 
 	if !f.SupportsCryptoCurrency(c) {
 		return "", fmt.Errorf("exchange 'Foxbit' does not support %s", c.Name)
@@ -77,15 +77,15 @@ func (f *foxbit) ConvertToResponse(cc currency.Currency, fc currency.Currency, b
 	}
 
 	return &xrate.CrawlerResponse{
-		Exchange:            f.ExchangeParams,
-		CryptoCurrency:      cc,
-		FiatCurrency:        fc,
-		Last:                res.Last,
-		High24h:             res.High,
-		Low24h:              res.Low,
-		Volume24h:           res.Vol,
-		VolumeFiat24h:       res.Vol_brl,
-		MostRecentBuyOrder:  res.Buy,
-		MostRecentSellOrder: res.Sell,
+		Exchange:           f.ExchangeParams,
+		CryptoCurrency:     cc,
+		FiatCurrency:       fc,
+		Last:               res.Last,
+		High24h:            res.High,
+		Low24h:             res.Low,
+		Volume24h:          res.Vol,
+		VolumeFiat24h:      res.Vol_brl,
+		MostRecentBidOrder: res.Buy,
+		MostRecentAskOrder: res.Sell,
 	}, nil
 }
