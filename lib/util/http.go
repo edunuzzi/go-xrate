@@ -2,28 +2,24 @@ package util
 
 import (
 	"io/ioutil"
-	"encoding/json"
 	"net/http"
+	"time"
 )
 
-func BaseGet(url string, res interface{}) error {
-	response, err := http.Get(url)
+func BaseGet(url string, timeout time.Duration) (body []byte, err error) {
+	client := http.Client{
+		Timeout: timeout,
+	}
+
+	response, err := client.Get(url)
 
 	if err != nil {
-		return err
+		return
 	}
 
 	defer response.Body.Close()
 
-	body, err := ioutil.ReadAll(response.Body)
+	body, err = ioutil.ReadAll(response.Body)
 
-	if err != nil {
-		return err
-	}
-
-	err = json.Unmarshal(body, &res)
-
-	if err != nil {
-		return err
-	}
+	return
 }

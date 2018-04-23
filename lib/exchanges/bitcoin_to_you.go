@@ -6,6 +6,8 @@ import (
 	"github.com/Swipecoin/go-currency/currency/bitcoin"
 	"github.com/Swipecoin/go-currency/currency/real"
 	"fmt"
+	"encoding/json"
+	"github.com/Swipecoin/go-xrate/lib/util"
 )
 
 const (
@@ -19,6 +21,10 @@ type BTYTicker struct {
 	Last string `json:"last"`
 	Buy  string `json:"buy"`
 	Sell string `json:"sell"`
+}
+
+type BitcoinToYouResponseBody struct {
+	Ticker BTYTicker `json:"ticker"`
 }
 
 type bitcoinToYou struct {
@@ -40,21 +46,50 @@ func BitcoinToYou() xrate.Exchange {
 	}
 }
 
-func (m *bitcoinToYou) getTickerURL(c currency.Currency) (string, error) {
+func (bty *bitcoinToYou) GetTickerURL(cc currency.Currency) (string, error) {
 
-	if !m.supportsCurrency(c) {
-		return "", fmt.Errorf("exchange 'Bitcointoyou' does not support %s", c.Name)
+	if !bty.SupportsCryptoCurrency(cc) {
+		return "", fmt.Errorf("exchange 'Bitcointoyou' does not support %s", cc.Name)
 	}
 
-	return m.BaseApiURL + "/ticker.aspx", nil
+	return bty.BaseApiURL + "/ticker.aspx", nil
 }
 
-func (m *bitcoinToYou) supportsCurrency(c currency.Currency) bool {
+func (bty *bitcoinToYou) SupportsFiatCurrency(fc currency.Currency) bool {
 
-	return xrate.SliceContainsCurrency(m.CryptoCurrencies, c)
+	return xrate.SliceContainsCurrency(bty.FiatCurrencies, fc)
 }
 
-func (m *bitcoinToYou) getName() xrate.ExchangeName {
+func (bty *bitcoinToYou) SupportsCryptoCurrency(cc currency.Currency) bool {
 
-	return m.Name
+	return xrate.SliceContainsCurrency(bty.CryptoCurrencies, cc)
+}
+
+func (bty *bitcoinToYou) GetName() xrate.ExchangeName {
+
+	return bty.Name
+}
+
+func (bty *bitcoinToYou) ConvertToResponse(cc currency.Currency, fc currency.Currency, body []byte) (*xrate.CrawlerResponse, error) {
+
+	var res BitcoinToYouResponseBody
+
+	err := json.Unmarshal(body, &res)
+
+	if err != nil {
+		return nil, err
+	}
+
+	return &xrate.CrawlerResponse{
+		Exchange:            bty.ExchangeParams,
+		CryptoCurrency:      cc,
+		FiatCurrency:        fc,
+		Last:                util.StringToFloat32(res.Ticker.Last),
+		High24h:             util.StringToFloat32(res.Ticker.High),
+		Low24h:              util.StringToFloat32(res.Ticker.Low),
+		Volume24h:           util.StringToFloat32(res.Ticker.Vol),
+		VolumeFiat24h:       xrate.UnsupportedField,
+		MostRecentBuyOrder:  util.StringToFloat32(res.Ticker.Buy),
+		MostRecentSellOrder: util.StringToFloat32(res.Ticker.Sell),
+	}, nil
 }

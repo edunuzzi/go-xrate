@@ -6,6 +6,7 @@ import (
 	"github.com/Swipecoin/go-currency/currency/bitcoin"
 	"github.com/Swipecoin/go-currency/currency/real"
 	"fmt"
+	"encoding/json"
 )
 
 const (
@@ -19,6 +20,10 @@ type BTTicker struct {
 	Last float32 `json:"last"`
 	Buy  float32 `json:"buy"`
 	Sell float32 `json:"sell"`
+}
+
+type BitcoinTradeResponseBody struct {
+	Data BTTicker `json:"data"`
 }
 
 type bitcoinTrade struct {
@@ -40,21 +45,50 @@ func BitcoinTrade() xrate.Exchange {
 	}
 }
 
-func (m *bitcoinTrade) getTickerURL(c currency.Currency) (string, error) {
+func (bt *bitcoinTrade) GetTickerURL(c currency.Currency) (string, error) {
 
-	if !m.supportsCurrency(c) {
+	if !bt.SupportsCryptoCurrency(c) {
 		return "", fmt.Errorf("exchange 'Bitcoin Trade' does not support %s", c.Name)
 	}
 
-	return m.BaseApiURL + "/" + string(c.Acronym) + "/ticker", nil
+	return bt.BaseApiURL + "/" + string(c.Acronym) + "/ticker", nil
 }
 
-func (m *bitcoinTrade) supportsCurrency(c currency.Currency) bool {
+func (bt *bitcoinTrade) SupportsFiatCurrency(f currency.Currency) bool {
 
-	return xrate.SliceContainsCurrency(m.CryptoCurrencies, c)
+	return xrate.SliceContainsCurrency(bt.FiatCurrencies, f)
 }
 
-func (m *bitcoinTrade) getName() xrate.ExchangeName {
+func (bt *bitcoinTrade) SupportsCryptoCurrency(c currency.Currency) bool {
 
-	return m.Name
+	return xrate.SliceContainsCurrency(bt.CryptoCurrencies, c)
+}
+
+func (bt *bitcoinTrade) GetName() xrate.ExchangeName {
+
+	return bt.Name
+}
+
+func (bt *bitcoinTrade) ConvertToResponse(cc currency.Currency, fc currency.Currency, body []byte) (*xrate.CrawlerResponse, error) {
+
+	var res BitcoinTradeResponseBody
+
+	err := json.Unmarshal(body, &res)
+
+	if err != nil {
+		return nil, err
+	}
+
+	return &xrate.CrawlerResponse{
+		Exchange:            bt.ExchangeParams,
+		CryptoCurrency:      cc,
+		FiatCurrency:        fc,
+		Last:                res.Data.Last,
+		High24h:             res.Data.High,
+		Low24h:              res.Data.Low,
+		Volume24h:           res.Data.Vol,
+		VolumeFiat24h:       xrate.UnsupportedField,
+		MostRecentBuyOrder:  res.Data.Buy,
+		MostRecentSellOrder: res.Data.Sell,
+	}, nil
 }

@@ -2,29 +2,33 @@ package xrate
 
 import (
 	"github.com/Swipecoin/go-currency/currency"
+	"reflect"
 )
 
 type ExchangeName string
 
 type ExchangeParams struct {
-	Name ExchangeName
+	Name             ExchangeName
 	CryptoCurrencies []currency.Currency
-	FiatCurrencies []currency.Currency
-	BaseApiURL string
+	FiatCurrencies   []currency.Currency
+	BaseApiURL       string
 }
 
 type Exchange interface {
-	getTickerURL(c currency.Currency) (string, error)
-	supportsCurrency(c currency.Currency) bool
-	getName() ExchangeName
+	GetTickerURL(cryptoCurrency currency.Currency) (string, error)
+	SupportsFiatCurrency(f currency.Currency) bool
+	SupportsCryptoCurrency(c currency.Currency) bool
+	GetName() ExchangeName
+	ConvertToResponse(cryptoCurrency currency.Currency, fiatCurrency currency.Currency, body []byte) (*CrawlerResponse, error)
 }
 
 func SliceContainsCurrency(currencies []currency.Currency, c currency.Currency) bool {
+
 	isSupported := false
 
 	for _, curr := range currencies {
 
-		if c.Name == curr.Name {
+		if reflect.DeepEqual(c, curr) {
 			isSupported = true
 		}
 	}
