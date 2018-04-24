@@ -3,8 +3,6 @@ package exchanges
 import (
 	"github.com/Swipecoin/go-xrate/lib"
 	"github.com/Swipecoin/go-currency/currency"
-	"github.com/Swipecoin/go-currency/currency/bitcoin"
-	"github.com/Swipecoin/go-currency/currency/real"
 	"fmt"
 	"encoding/json"
 )
@@ -35,10 +33,10 @@ func BitcoinTrade() xrate.Exchange {
 		xrate.ExchangeParams{
 			Name: BitcoinTradeName,
 			CryptoCurrencies: []currency.Currency{
-				bitcoin.Currency(),
+				currency.Bitcoin(),
 			},
 			FiatCurrencies: []currency.Currency{
-				real.Currency(),
+				currency.Real(),
 			},
 			BaseApiURL: "https://api.bitcointrade.com.br/v1/public",
 		},

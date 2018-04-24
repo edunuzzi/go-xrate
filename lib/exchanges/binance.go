@@ -3,11 +3,9 @@ package exchanges
 import (
 	"github.com/Swipecoin/go-xrate/lib"
 	"github.com/Swipecoin/go-currency/currency"
-	"github.com/Swipecoin/go-currency/currency/bitcoin"
 	"fmt"
 	"encoding/json"
 	"github.com/Swipecoin/go-xrate/lib/util"
-	"github.com/Swipecoin/go-currency/currency/tether"
 )
 
 const (
@@ -42,10 +40,10 @@ func Binance() xrate.Exchange {
 		xrate.ExchangeParams{
 			Name: BinanceName,
 			CryptoCurrencies: []currency.Currency{
-				bitcoin.Currency(),
+				currency.Bitcoin(),
 			},
 			FiatCurrencies: []currency.Currency{
-				tether.Currency(),
+				currency.Tether(),
 			},
 			BaseApiURL: "https://api.binance.com",
 		},

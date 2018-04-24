@@ -2,7 +2,6 @@ package xrate
 
 import (
 	"fmt"
-	"github.com/Swipecoin/go-currency/currency/bitcoin"
 	"github.com/Swipecoin/go-currency/currency"
 )
 
@@ -10,7 +9,7 @@ func NewBTCCrawler(fiatCurrency currency.Currency, exchanges ...Exchange) (*craw
 
 	crawler := &crawler{
 		fiatCurrency: fiatCurrency,
-		cryptoCurrency: bitcoin.Currency(),
+		cryptoCurrency: currency.Bitcoin(),
 		exchanges: exchanges,
 	}
 
