@@ -1,10 +1,10 @@
 package exchanges
 
 import (
-	"github.com/Swipecoin/go-xrate/lib"
-	"github.com/Swipecoin/go-currency/currency"
-	"fmt"
 	"encoding/json"
+	"fmt"
+	"github.com/Swipecoin/go-currency/currency"
+	"github.com/Swipecoin/go-xrate/lib"
 	"github.com/Swipecoin/go-xrate/lib/util"
 )
 
@@ -79,22 +79,34 @@ func (m *mercadoBitcoin) ConvertToResponse(cc currency.Currency, fc currency.Cur
 	}
 
 	last, err := util.StringToFloat32(res.Ticker.Last)
-	if err != nil { return nil, err }
+	if err != nil {
+		return nil, err
+	}
 
 	high, err := util.StringToFloat32(res.Ticker.High)
-	if err != nil { return nil, err }
+	if err != nil {
+		return nil, err
+	}
 
 	low, err := util.StringToFloat32(res.Ticker.Low)
-	if err != nil { return nil, err }
+	if err != nil {
+		return nil, err
+	}
 
 	vol, err := util.StringToFloat32(res.Ticker.Vol)
-	if err != nil { return nil, err }
+	if err != nil {
+		return nil, err
+	}
 
 	bid, err := util.StringToFloat32(res.Ticker.Buy)
-	if err != nil { return nil, err }
+	if err != nil {
+		return nil, err
+	}
 
 	ask, err := util.StringToFloat32(res.Ticker.Sell)
-	if err != nil { return nil, err }
+	if err != nil {
+		return nil, err
+	}
 
 	return &xrate.CrawlerResponse{
 		Exchange:           m.ExchangeParams,

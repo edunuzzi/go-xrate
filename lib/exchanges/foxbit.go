@@ -1,10 +1,10 @@
 package exchanges
 
 import (
-	"github.com/Swipecoin/go-xrate/lib"
-	"github.com/Swipecoin/go-currency/currency"
-	"fmt"
 	"encoding/json"
+	"fmt"
+	"github.com/Swipecoin/go-currency/currency"
+	"github.com/Swipecoin/go-xrate/lib"
 )
 
 const (

@@ -8,9 +8,9 @@ import (
 func NewBTCCrawler(fiatCurrency currency.Currency, exchanges ...Exchange) (*crawler, error) {
 
 	crawler := &crawler{
-		fiatCurrency: fiatCurrency,
+		fiatCurrency:   fiatCurrency,
 		cryptoCurrency: currency.Bitcoin(),
-		exchanges: exchanges,
+		exchanges:      exchanges,
 	}
 
 	for _, e := range crawler.exchanges {
