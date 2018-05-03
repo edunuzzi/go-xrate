@@ -2,10 +2,9 @@ package exchanges
 
 import (
 	"fmt"
-	"github.com/Swipecoin/go-xrate/lib"
 )
 
-func GetExchangeByName(name xrate.ExchangeName) (xrate.Exchange, error) {
+func GetExchangeByName(name ExchangeName) (Exchange, error) {
 
 	switch name {
 	case BinanceName:

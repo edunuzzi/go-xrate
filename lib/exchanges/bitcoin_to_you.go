@@ -4,12 +4,12 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/Swipecoin/go-currency/currency"
-	"github.com/Swipecoin/go-xrate/lib"
 	"github.com/Swipecoin/go-xrate/lib/util"
+	"time"
 )
 
 const (
-	BitcoinToYouName xrate.ExchangeName = "BitcoinToYou"
+	BitcoinToYouName ExchangeName = "BitcoinToYou"
 )
 
 type BTYTicker struct {
@@ -26,12 +26,12 @@ type BitcoinToYouResponseBody struct {
 }
 
 type bitcoinToYou struct {
-	xrate.ExchangeParams
+	ExchangeParams
 }
 
-func BitcoinToYou() xrate.Exchange {
+func BitcoinToYou() Exchange {
 	return &bitcoinToYou{
-		xrate.ExchangeParams{
+		ExchangeParams{
 			Name: BitcoinToYouName,
 			CryptoCurrencies: []currency.Currency{
 				currency.Bitcoin(),
@@ -55,20 +55,20 @@ func (bty *bitcoinToYou) GetTickerURL(cc currency.Currency, _ currency.Currency)
 
 func (bty *bitcoinToYou) SupportsFiatCurrency(fc currency.Currency) bool {
 
-	return xrate.SliceContainsCurrency(bty.FiatCurrencies, fc)
+	return SliceContainsCurrency(bty.FiatCurrencies, fc)
 }
 
 func (bty *bitcoinToYou) SupportsCryptoCurrency(cc currency.Currency) bool {
 
-	return xrate.SliceContainsCurrency(bty.CryptoCurrencies, cc)
+	return SliceContainsCurrency(bty.CryptoCurrencies, cc)
 }
 
-func (bty *bitcoinToYou) GetName() xrate.ExchangeName {
+func (bty *bitcoinToYou) GetName() ExchangeName {
 
 	return bty.Name
 }
 
-func (bty *bitcoinToYou) ConvertToResponse(cc currency.Currency, fc currency.Currency, body []byte) (*xrate.CrawlerResponse, error) {
+func (bty *bitcoinToYou) ConvertToResponse(cc currency.Currency, fc currency.Currency, body []byte) (*CrawlerResponse, error) {
 
 	var res BitcoinToYouResponseBody
 
@@ -108,7 +108,7 @@ func (bty *bitcoinToYou) ConvertToResponse(cc currency.Currency, fc currency.Cur
 		return nil, err
 	}
 
-	return &xrate.CrawlerResponse{
+	return &CrawlerResponse{
 		Exchange:           bty.ExchangeParams,
 		CryptoCurrency:     cc,
 		FiatCurrency:       fc,
@@ -116,8 +116,9 @@ func (bty *bitcoinToYou) ConvertToResponse(cc currency.Currency, fc currency.Cur
 		High24h:            high,
 		Low24h:             low,
 		Volume24h:          vol,
-		VolumeFiat24h:      xrate.UnsupportedField,
+		VolumeFiat24h:      UnsupportedField,
 		MostRecentBidOrder: bid,
 		MostRecentAskOrder: ask,
+		CreatedAt: time.Now(),
 	}, nil
 }

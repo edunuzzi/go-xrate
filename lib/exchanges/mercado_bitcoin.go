@@ -4,12 +4,12 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/Swipecoin/go-currency/currency"
-	"github.com/Swipecoin/go-xrate/lib"
 	"github.com/Swipecoin/go-xrate/lib/util"
+	"time"
 )
 
 const (
-	MercadoBitcoinName xrate.ExchangeName = "Mercado Bitcoin"
+	MercadoBitcoinName ExchangeName = "Mercado Bitcoin"
 )
 
 type MBTicker struct {
@@ -26,12 +26,12 @@ type MercadoBitcoinResponseBody struct {
 }
 
 type mercadoBitcoin struct {
-	xrate.ExchangeParams
+	ExchangeParams
 }
 
-func MercadoBitcoin() xrate.Exchange {
+func MercadoBitcoin() Exchange {
 	return &mercadoBitcoin{
-		xrate.ExchangeParams{
+		ExchangeParams{
 			Name: MercadoBitcoinName,
 			CryptoCurrencies: []currency.Currency{
 				currency.Bitcoin(),
@@ -55,20 +55,20 @@ func (m *mercadoBitcoin) GetTickerURL(cc currency.Currency, _ currency.Currency)
 
 func (m *mercadoBitcoin) SupportsFiatCurrency(f currency.Currency) bool {
 
-	return xrate.SliceContainsCurrency(m.FiatCurrencies, f)
+	return SliceContainsCurrency(m.FiatCurrencies, f)
 }
 
 func (m *mercadoBitcoin) SupportsCryptoCurrency(cc currency.Currency) bool {
 
-	return xrate.SliceContainsCurrency(m.CryptoCurrencies, cc)
+	return SliceContainsCurrency(m.CryptoCurrencies, cc)
 }
 
-func (m *mercadoBitcoin) GetName() xrate.ExchangeName {
+func (m *mercadoBitcoin) GetName() ExchangeName {
 
 	return m.Name
 }
 
-func (m *mercadoBitcoin) ConvertToResponse(cc currency.Currency, fc currency.Currency, body []byte) (*xrate.CrawlerResponse, error) {
+func (m *mercadoBitcoin) ConvertToResponse(cc currency.Currency, fc currency.Currency, body []byte) (*CrawlerResponse, error) {
 
 	var res MercadoBitcoinResponseBody
 
@@ -108,7 +108,7 @@ func (m *mercadoBitcoin) ConvertToResponse(cc currency.Currency, fc currency.Cur
 		return nil, err
 	}
 
-	return &xrate.CrawlerResponse{
+	return &CrawlerResponse{
 		Exchange:           m.ExchangeParams,
 		CryptoCurrency:     cc,
 		FiatCurrency:       fc,
@@ -116,8 +116,9 @@ func (m *mercadoBitcoin) ConvertToResponse(cc currency.Currency, fc currency.Cur
 		High24h:            high,
 		Low24h:             low,
 		Volume24h:          vol,
-		VolumeFiat24h:      xrate.UnsupportedField,
+		VolumeFiat24h:      UnsupportedField,
 		MostRecentBidOrder: bid,
 		MostRecentAskOrder: ask,
+		CreatedAt: time.Now(),
 	}, nil
 }

@@ -1,4 +1,4 @@
-package xrate
+package exchanges
 
 import (
 	"github.com/Swipecoin/go-currency/currency"
@@ -19,19 +19,20 @@ type CrawlerResponse struct {
 	VolumeFiat24h      float32           `json:"volume_fiat_24h,omitempty"`
 	MostRecentBidOrder float32           `json:"most_recent_bid_order,omitempty"`
 	MostRecentAskOrder float32           `json:"most_recent_ask_order,omitempty"`
+	CreatedAt          time.Time         `json:"created_at"`
 }
 
-type crawler struct {
-	fiatCurrency   currency.Currency
-	cryptoCurrency currency.Currency
-	exchanges      []Exchange
+type Crawler struct {
+	FiatCurrency   currency.Currency
+	CryptoCurrency currency.Currency
+	Exchanges      []Exchange
 }
 
-func (c *crawler) Rates(timeout time.Duration) ([]CrawlerResponse, []error) {
+func (c *Crawler) Rates(timeout time.Duration) ([]CrawlerResponse, []error) {
 
 	fetch := func(resChan chan *CrawlerResponse, errChan chan error, e Exchange) {
 
-		tickerUrl, err := e.GetTickerURL(c.cryptoCurrency, c.fiatCurrency)
+		tickerUrl, err := e.GetTickerURL(c.CryptoCurrency, c.FiatCurrency)
 
 		if err != nil {
 			errChan <- err
@@ -47,7 +48,7 @@ func (c *crawler) Rates(timeout time.Duration) ([]CrawlerResponse, []error) {
 			return
 		}
 
-		res, err := e.ConvertToResponse(c.cryptoCurrency, c.fiatCurrency, body)
+		res, err := e.ConvertToResponse(c.CryptoCurrency, c.FiatCurrency, body)
 
 		if err != nil {
 			errChan <- err
@@ -62,16 +63,16 @@ func (c *crawler) Rates(timeout time.Duration) ([]CrawlerResponse, []error) {
 	var resList []CrawlerResponse
 	var errList []error
 
-	numberOfExchanges := len(c.exchanges)
+	numberOfExchanges := len(c.Exchanges)
 
 	resChan := make(chan *CrawlerResponse, numberOfExchanges)
 	errChan := make(chan error, numberOfExchanges)
 
-	for _, e := range c.exchanges {
+	for _, e := range c.Exchanges {
 		go fetch(resChan, errChan, e)
 	}
 
-	for range c.exchanges {
+	for range c.Exchanges {
 		res := <-resChan
 		err := <-errChan
 
