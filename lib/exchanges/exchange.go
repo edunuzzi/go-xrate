@@ -1,4 +1,4 @@
-package xrate
+package exchanges
 
 import (
 	"github.com/Swipecoin/go-currency/currency"

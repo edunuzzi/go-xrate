@@ -1,14 +1,14 @@
 package exchanges
 
 import (
-	"github.com/Swipecoin/go-xrate/lib"
-	"github.com/Swipecoin/go-currency/currency"
-	"fmt"
 	"encoding/json"
+	"fmt"
+	"github.com/Swipecoin/go-currency/currency"
+	"time"
 )
 
 const (
-	FoxbitName xrate.ExchangeName = "Foxbit"
+	FoxbitName ExchangeName = "Foxbit"
 )
 
 type FoxbitTickerResponseBody struct {
@@ -22,12 +22,12 @@ type FoxbitTickerResponseBody struct {
 }
 
 type foxbit struct {
-	xrate.ExchangeParams
+	ExchangeParams
 }
 
-func Foxbit() xrate.Exchange {
+func Foxbit() Exchange {
 	return &foxbit{
-		xrate.ExchangeParams{
+		ExchangeParams{
 			Name: FoxbitName,
 			CryptoCurrencies: []currency.Currency{
 				currency.Bitcoin(),
@@ -35,7 +35,7 @@ func Foxbit() xrate.Exchange {
 			FiatCurrencies: []currency.Currency{
 				currency.Real(),
 			},
-			BaseApiURL: "https://api.blinktrade.com/api/v1/BRL",
+			BaseApiURL: "https://api.blinktrade.com/api/v1/BRL",//FIXME remove BRL
 		},
 	}
 }
@@ -51,20 +51,20 @@ func (f *foxbit) GetTickerURL(c currency.Currency, _ currency.Currency) (string,
 
 func (f *foxbit) SupportsFiatCurrency(fc currency.Currency) bool {
 
-	return xrate.SliceContainsCurrency(f.FiatCurrencies, fc)
+	return SliceContainsCurrency(f.FiatCurrencies, fc)
 }
 
 func (f *foxbit) SupportsCryptoCurrency(c currency.Currency) bool {
 
-	return xrate.SliceContainsCurrency(f.CryptoCurrencies, c)
+	return SliceContainsCurrency(f.CryptoCurrencies, c)
 }
 
-func (f *foxbit) GetName() xrate.ExchangeName {
+func (f *foxbit) GetName() ExchangeName {
 
 	return f.Name
 }
 
-func (f *foxbit) ConvertToResponse(cc currency.Currency, fc currency.Currency, body []byte) (*xrate.CrawlerResponse, error) {
+func (f *foxbit) ConvertToResponse(cc currency.Currency, fc currency.Currency, body []byte) (*CrawlerResponse, error) {
 
 	var res FoxbitTickerResponseBody
 
@@ -74,7 +74,7 @@ func (f *foxbit) ConvertToResponse(cc currency.Currency, fc currency.Currency, b
 		return nil, err
 	}
 
-	return &xrate.CrawlerResponse{
+	return &CrawlerResponse{
 		Exchange:           f.ExchangeParams,
 		CryptoCurrency:     cc,
 		FiatCurrency:       fc,
@@ -85,5 +85,6 @@ func (f *foxbit) ConvertToResponse(cc currency.Currency, fc currency.Currency, b
 		VolumeFiat24h:      res.Vol_brl,
 		MostRecentBidOrder: res.Buy,
 		MostRecentAskOrder: res.Sell,
+		CreatedAt: time.Now(),
 	}, nil
 }
