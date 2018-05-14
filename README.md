@@ -12,19 +12,18 @@ It doesn't rely on any external lib :D
   
 ## Supported Exchanges
 
-As of now, only exchanges from Brazil are supported. But the code is prepared to work with multiple countries, fiat currencies and cryptocurrencies. 
+As of now, only a few exchanges from Brazil and Binance are supported. But the code is prepared to work with multiple countries, fiat currencies and cryptocurrencies. 
 
 Here's the supported list (We are constantly adding more and more):
 - [FoxBit](https://foxbit.exchange)
 - [Mercado Bitcoin](https://mercadobitcoin.com.br) 
 - [BitcoinTrade](https://bitcointrade.com.br)
 - [Bitcoin To You](https://bitcointoyou.com)
+- [Binance](https://binance.com)
 
 ## Supported Cryptocurrencies
 
 - BTC: Bitcoin
-- LTC: Litecoin
-- BCH: Bitcoin Cash
 
 ## Usage
 It's really simple to get started.
