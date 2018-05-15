@@ -3,50 +3,8 @@ package xrate
 import (
 	"fmt"
 	"github.com/Swipecoin/go-currency/currency"
-
 	"github.com/Swipecoin/go-xrate/lib/exchanges"
-	"time"
 )
-//FIXME test concurrency access (mutex)
-var cache exchanges.CrawlerResponse
-
-func GetRate() exchanges.CrawlerResponse {
-	return cache
-}
-
-// FIXME remove me from here
-func CacheTheLowestPrice(responses []exchanges.CrawlerResponse) {
-
-	lowestResponse := exchanges.CrawlerResponse{}
-	for _, resp1 := range responses {
-		lowestResponse = resp1
-		for _, resp2 := range responses {
-			if resp2.Last < resp1.Last {
-				lowestResponse = resp2
-			}
-		}
-	}
-
-	cache = lowestResponse
-}
-
-// FIXME remove me from here
-func StartBTCCrawler() {
-
-	for {
-
-		crawler, _ := NewBTCCrawler(currency.Real(), exchanges.Foxbit(), exchanges.BitcoinTrade())
-
-		responses, _ := crawler.Rates(0)
-
-		CacheTheLowestPrice(responses)
-
-		// Set this on configuration properties
-		time.Sleep(10 * time.Minute)
-	}
-}
-
-
 
 func NewBTCCrawler(fiatCurrency currency.Currency, exs ...exchanges.Exchange) (*exchanges.Crawler, error) {
 

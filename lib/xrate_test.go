@@ -8,6 +8,7 @@ import (
 	"github.com/Swipecoin/go-xrate/lib/exchanges"
 )
 
+// FIXME
 func TestNewBTCCrawler(t *testing.T) {
 
 	for {
