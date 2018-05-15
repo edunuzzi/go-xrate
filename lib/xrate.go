@@ -14,6 +14,7 @@ func GetRate() exchanges.CrawlerResponse {
 	return cache
 }
 
+// FIXME remove me from here
 func CacheTheLowestPrice(responses []exchanges.CrawlerResponse) {
 
 	lowestResponse := exchanges.CrawlerResponse{}
@@ -29,6 +30,7 @@ func CacheTheLowestPrice(responses []exchanges.CrawlerResponse) {
 	cache = lowestResponse
 }
 
+// FIXME remove me from here
 func StartBTCCrawler() {
 
 	for {
@@ -39,6 +41,7 @@ func StartBTCCrawler() {
 
 		CacheTheLowestPrice(responses)
 
+		// Set this on configuration properties
 		time.Sleep(10 * time.Minute)
 	}
 }
