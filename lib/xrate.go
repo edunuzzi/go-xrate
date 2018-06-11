@@ -2,8 +2,8 @@ package xrate
 
 import (
 	"fmt"
-	"github.com/Swipecoin/go-currency/currency"
 	"github.com/Swipecoin/go-xrate/lib/exchanges"
+	"github.com/Swipecoin/go-xrate/lib/currency"
 )
 
 func NewBTCCrawler(fiatCurrency currency.Currency, exs ...exchanges.Exchange) (*exchanges.Crawler, error) {

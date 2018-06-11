@@ -3,7 +3,7 @@ package exchanges
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/Swipecoin/go-currency/currency"
+	"github.com/Swipecoin/go-xrate/lib/currency"
 	"github.com/Swipecoin/go-xrate/lib/util"
 	"time"
 )

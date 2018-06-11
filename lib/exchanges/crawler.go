@@ -1,9 +1,9 @@
 package exchanges
 
 import (
-	"github.com/Swipecoin/go-currency/currency"
 	"github.com/Swipecoin/go-xrate/lib/util"
 	"time"
+	"github.com/Swipecoin/go-xrate/lib/currency"
 )
 
 const UnsupportedField float32 = -1
