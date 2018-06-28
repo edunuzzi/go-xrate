@@ -14,7 +14,7 @@ func TestNewBTCCrawler(t *testing.T) {
 	for {
 		crawler, _ := NewBTCCrawler(currency.Real(), exchanges.Foxbit(), exchanges.BitcoinTrade())
 
-		resps, _ := crawler.Rates(0)
+		resps := crawler.Rates(0)
 
 		for _, resp := range resps {
 			fmt.Println(resp)

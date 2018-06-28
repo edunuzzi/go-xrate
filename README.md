@@ -109,12 +109,13 @@ PS: The library uses goroutines for every api call. So the total time for the cr
 ### xrate.NewBTCCrawler(currency.Currency, ...exchanges.Exchange) (*exchanges.Crawler, error)
 This is used to create new crypto crawler. It expects a fiatCurrency and the exchanges you want to fetch.
 
-It will return a error if you pass it a exchange that does not support Bitcoin or the given fiat currency.
+PS: It will return a error if you pass it a exchange that does not support Bitcoin or the given fiat currency.
 
 ### (*exchanges.Crawler) Rates(time.Duration) ([]CrawlerResponse) 
 This is the method used to fetch the rates for the exchanges passed on the previous method. 
-
 It receives a timeout and returns a list of responses, one for each exchange. 
+
+PS: If a specific exchange does not support some field, it will return -1 instead.
 
 ## Supported Exchanges
 
