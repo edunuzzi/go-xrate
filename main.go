@@ -16,7 +16,7 @@ func main() {
 		exchanges.MercadoBitcoin(),
 	)
 
-	r, _ := c.Rates(time.Second * 10)
+	r := c.Rates(time.Second * 10)
 
 	fmt.Println(
 		r[0].Exchange,

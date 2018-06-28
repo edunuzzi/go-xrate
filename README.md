@@ -66,6 +66,7 @@ fmt.Println(
     r[0].MostRecentBidOrder,
     r[0].MostRecentAskOrder,
     r[0].CreatedAt,
+    r[0].Error,
 )
 
 // r[1] -> response from Foxbit
@@ -81,6 +82,7 @@ fmt.Println(
     r[1].MostRecentBidOrder,
     r[1].MostRecentAskOrder,
     r[1].CreatedAt,
+    r[1].Error,
 )
 
 // r[2] -> response from Mercado Bitcoin
@@ -96,10 +98,23 @@ fmt.Println(
     r[2].MostRecentBidOrder,
     r[2].MostRecentAskOrder,
     r[2].CreatedAt,
+    r[2].Error,
 )
 ```
 
 PS: The library uses goroutines for every api call. So the total time for the crawler.Rate() method is equal to the slowest Exchange API response time at that moment.
+
+## API
+
+#### xrate.NewBTCCrawler(fiatCurrency currency.Currency, exs ...exchanges.Exchange) (*exchanges.Crawler, error)
+This is used to create new crypto crawler. It expects a fiatCurrency and the exchanges you want to fetch.
+
+It will return a error if you pass it a exchange that does not support Bitcoin or the given fiat currency.
+
+#### (*exchanges.Crawler) Rates(timeout time.Duration) ([]CrawlerResponse) 
+This is the method used to fetch the rates for the exchanges passed on the previous method. 
+
+It receives a timeout and returns a list of responses, one for each exchange. 
 
 ## Supported Exchanges
 
@@ -115,6 +130,8 @@ Here's the currently supported list:
 #### Cryptocurrencies:
 - BTC
 
+---
+
 ### [Mercado Bitcoin](https://mercadobitcoin.com.br)
 
 #### Fiat currencies:
@@ -122,6 +139,8 @@ Here's the currently supported list:
 
 #### Cryptocurrencies:
 - BTC
+
+---
 
 ### [BitcoinTrade](https://bitcointrade.com.br)
 
@@ -131,6 +150,8 @@ Here's the currently supported list:
 #### Cryptocurrencies:
 - BTC
 
+---
+
 ### [Bitcoin To You](https://bitcointoyou.com)
 
 #### Fiat currencies:
@@ -138,6 +159,8 @@ Here's the currently supported list:
 
 #### Cryptocurrencies:
 - BTC
+
+---
 
 ### [Binance](https://binance.com)
 

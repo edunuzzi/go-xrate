@@ -20,6 +20,7 @@ type CrawlerResponse struct {
 	MostRecentBidOrder float32           `json:"most_recent_bid_order,omitempty"`
 	MostRecentAskOrder float32           `json:"most_recent_ask_order,omitempty"`
 	CreatedAt          time.Time         `json:"created_at"`
+	Error              error             `json:"error"`
 }
 
 type Crawler struct {
@@ -28,14 +29,13 @@ type Crawler struct {
 	Exchanges      []Exchange
 }
 
-func (c *Crawler) Rates(timeout time.Duration) ([]CrawlerResponse, []error) {
+func (c *Crawler) Rates(timeout time.Duration) ([]CrawlerResponse) {
 
-	fetch := func(resChan chan *CrawlerResponse, errChan chan error, e Exchange) {
+	fetch := func(resChan chan CrawlerResponse, e Exchange) {
 
 		tickerUrl, err := e.GetTickerURL(c.CryptoCurrency, c.FiatCurrency)
 
 		if err != nil {
-			errChan <- err
 			resChan <- nil
 			return
 		}
@@ -43,47 +43,29 @@ func (c *Crawler) Rates(timeout time.Duration) ([]CrawlerResponse, []error) {
 		body, err := util.BaseGet(tickerUrl, timeout)
 
 		if err != nil {
-			errChan <- err
-			resChan <- nil
+			resChan <- CrawlerResponse{Error: err}
 			return
 		}
 
 		res, err := e.ConvertToResponse(c.CryptoCurrency, c.FiatCurrency, body)
+		res.Error = err
 
-		if err != nil {
-			errChan <- err
-			resChan <- nil
-			return
-		}
-
-		resChan <- res
-		errChan <- nil
+		resChan <- *res
 	}
 
 	var resList []CrawlerResponse
-	var errList []error
 
 	numberOfExchanges := len(c.Exchanges)
 
-	resChan := make(chan *CrawlerResponse, numberOfExchanges)
-	errChan := make(chan error, numberOfExchanges)
+	resChan := make(chan CrawlerResponse, numberOfExchanges)
 
 	for _, e := range c.Exchanges {
-		go fetch(resChan, errChan, e)
+		go fetch(resChan, e)
 	}
 
 	for range c.Exchanges {
-		res := <-resChan
-		err := <-errChan
-
-		if res != nil {
-			resList = append(resList, *res)
-		}
-
-		if err != nil {
-			errList = append(errList, err)
-		}
+		resList = append(resList, <-resChan)
 	}
 
-	return resList, errList
+	return resList
 }
