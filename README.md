@@ -12,55 +12,6 @@ go get github.com/swipecoin/go-xrate
 ```
 
 It doesn't rely on any external lib :D
-  
-## Supported Exchanges
-
-As of now, only a few exchanges are supported. But the code is prepared to work with multiple countries, fiat currencies and cryptocurrencies. 
-
-Here's the currently supported list:
-### [Foxbit](https://foxbit.exchange)
-
-#### Fiat currencies:
-- Real
-
-#### Cryptocurrencies:
-- BTC
-
-### [Mercado Bitcoin](https://mercadobitcoin.com.br)
-
-#### Fiat currencies:
-- Real
-
-#### Cryptocurrencies:
-- BTC
-
-### [BitcoinTrade](https://bitcointrade.com.br)
-
-#### Fiat currencies:
-- Real
-
-#### Cryptocurrencies:
-- BTC
-
-### [Bitcoin To You](https://bitcointoyou.com)
-
-#### Fiat currencies:
-- Real
-
-#### Cryptocurrencies:
-- BTC
-
-### [Binance](https://binance.com)
-
-#### Fiat currencies:
-- Tether
-
-#### Cryptocurrencies:
-- BTC
-
-## Supported Exchanges
-
-- BTC: Bitcoin
 
 ## Usage
 
@@ -150,7 +101,51 @@ fmt.Println(
 
 PS: The library uses goroutines for every api call. So the total time for the crawler.Rate() method is equal to the slowest Exchange API response time at that moment.
 
-## Exchanges    
+## Supported Exchanges
+
+As of now, only a few exchanges are supported. But the code is prepared to work with multiple countries, fiat currencies and cryptocurrencies. 
+
+Here's the currently supported list:
+
+### [Foxbit](https://foxbit.exchange)
+
+#### Fiat currencies:
+- Real
+
+#### Cryptocurrencies:
+- BTC
+
+### [Mercado Bitcoin](https://mercadobitcoin.com.br)
+
+#### Fiat currencies:
+- Real
+
+#### Cryptocurrencies:
+- BTC
+
+### [BitcoinTrade](https://bitcointrade.com.br)
+
+#### Fiat currencies:
+- Real
+
+#### Cryptocurrencies:
+- BTC
+
+### [Bitcoin To You](https://bitcointoyou.com)
+
+#### Fiat currencies:
+- Real
+
+#### Cryptocurrencies:
+- BTC
+
+### [Binance](https://binance.com)
+
+#### Fiat currencies:
+- Tether
+
+#### Cryptocurrencies:
+- BTC
 
 ## TODO
 - [ ] Report badge
