@@ -88,32 +88,32 @@ func (b *binance) ConvertToResponse(cc currency.Currency, fc currency.Currency, 
 		return nil, err
 	}
 
-	last, err := util.StringToFloat32(res.LastPrice)
+	last, err := util.StringToFloat64(res.LastPrice)
 	if err != nil {
 		return nil, err
 	}
 
-	high, err := util.StringToFloat32(res.HighPrice)
+	high, err := util.StringToFloat64(res.HighPrice)
 	if err != nil {
 		return nil, err
 	}
 
-	low, err := util.StringToFloat32(res.LowPrice)
+	low, err := util.StringToFloat64(res.LowPrice)
 	if err != nil {
 		return nil, err
 	}
 
-	vol, err := util.StringToFloat32(res.Volume)
+	vol, err := util.StringToFloat64(res.Volume)
 	if err != nil {
 		return nil, err
 	}
 
-	bid, err := util.StringToFloat32(res.BidPrice)
+	bid, err := util.StringToFloat64(res.BidPrice)
 	if err != nil {
 		return nil, err
 	}
 
-	ask, err := util.StringToFloat32(res.AskPrice)
+	ask, err := util.StringToFloat64(res.AskPrice)
 	if err != nil {
 		return nil, err
 	}

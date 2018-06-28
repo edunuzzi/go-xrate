@@ -12,12 +12,12 @@ const (
 )
 
 type BTTicker struct {
-	High float32 `json:"high"`
-	Low  float32 `json:"low"`
-	Vol  float32 `json:"volume"`
-	Last float32 `json:"last"`
-	Buy  float32 `json:"buy"`
-	Sell float32 `json:"sell"`
+	High float64 `json:"high"`
+	Low  float64 `json:"low"`
+	Vol  float64 `json:"volume"`
+	Last float64 `json:"last"`
+	Buy  float64 `json:"buy"`
+	Sell float64 `json:"sell"`
 }
 
 type BitcoinTradeResponseBody struct {

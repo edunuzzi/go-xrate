@@ -12,13 +12,13 @@ const (
 )
 
 type FoxbitTickerResponseBody struct {
-	High    float32 `json:"high"`
-	Vol     float32 `json:"vol"`
-	Buy     float32 `json:"buy"`
-	Last    float32 `json:"last"`
-	Low     float32 `json:"low"`
-	Sell    float32 `json:"sell"`
-	Vol_brl float32 `json:"vol_brl"`
+	High    float64 `json:"high"`
+	Vol     float64 `json:"vol"`
+	Buy     float64 `json:"buy"`
+	Last    float64 `json:"last"`
+	Low     float64 `json:"low"`
+	Sell    float64 `json:"sell"`
+	Vol_brl float64 `json:"vol_brl"`
 }
 
 type foxbit struct {

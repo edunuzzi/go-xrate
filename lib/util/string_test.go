@@ -5,9 +5,9 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestStringToFloat32(t *testing.T) {
-	base := func(str string, expectedReturn float32, shouldErr bool) {
-		f, err := StringToFloat32(str)
+func TestStringToFloat64(t *testing.T) {
+	base := func(str string, expectedReturn float64, shouldErr bool) {
+		f, err := StringToFloat64(str)
 
 		if shouldErr {
 			assert.NotNil(t, err)

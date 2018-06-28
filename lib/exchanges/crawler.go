@@ -6,7 +6,7 @@ import (
 	"time"
 )
 
-const UnsupportedField float32 = -1
+const UnsupportedField float64 = -1
 
 type CrawlerResponse struct {
 	Exchange           ExchangeParams    `json:"exchange,omitempty"`

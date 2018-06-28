@@ -78,32 +78,32 @@ func (bty *bitcoinToYou) ConvertToResponse(cc currency.Currency, fc currency.Cur
 		return nil, err
 	}
 
-	last, err := util.StringToFloat32(res.Ticker.Last)
+	last, err := util.StringToFloat64(res.Ticker.Last)
 	if err != nil {
 		return nil, err
 	}
 
-	high, err := util.StringToFloat32(res.Ticker.High)
+	high, err := util.StringToFloat64(res.Ticker.High)
 	if err != nil {
 		return nil, err
 	}
 
-	low, err := util.StringToFloat32(res.Ticker.Low)
+	low, err := util.StringToFloat64(res.Ticker.Low)
 	if err != nil {
 		return nil, err
 	}
 
-	vol, err := util.StringToFloat32(res.Ticker.Vol)
+	vol, err := util.StringToFloat64(res.Ticker.Vol)
 	if err != nil {
 		return nil, err
 	}
 
-	bid, err := util.StringToFloat32(res.Ticker.Buy)
+	bid, err := util.StringToFloat64(res.Ticker.Buy)
 	if err != nil {
 		return nil, err
 	}
 
-	ask, err := util.StringToFloat32(res.Ticker.Sell)
+	ask, err := util.StringToFloat64(res.Ticker.Sell)
 	if err != nil {
 		return nil, err
 	}
