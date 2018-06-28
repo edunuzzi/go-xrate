@@ -12,8 +12,6 @@ To install, just run
 go get github.com/swipecoin/go-xrate
 ```
 
-It doesn't rely on any external lib :D
-
 ## Usage
 
 ### BTC -> USDT (Binance)
