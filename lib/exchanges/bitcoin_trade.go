@@ -88,6 +88,6 @@ func (bt *bitcoinTrade) ConvertToResponse(cc currency.Currency, fc currency.Curr
 		VolumeFiat24h:      UnsupportedField,
 		MostRecentBidOrder: res.Data.Buy,
 		MostRecentAskOrder: res.Data.Sell,
-		CreatedAt: time.Now(),
+		CreatedAt:          time.Now(),
 	}, nil
 }

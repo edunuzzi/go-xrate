@@ -1,8 +1,8 @@
 package currency
 
 import (
-	"testing"
 	"github.com/stretchr/testify/assert"
+	"testing"
 )
 
 func TestDollar(t *testing.T) {

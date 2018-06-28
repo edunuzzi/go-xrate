@@ -35,7 +35,7 @@ func Foxbit() Exchange {
 			FiatCurrencies: []currency.Currency{
 				currency.Real(),
 			},
-			BaseApiURL: "https://api.blinktrade.com/api/v1/BRL",//FIXME remove BRL
+			BaseApiURL: "https://api.blinktrade.com/api/v1/BRL", //FIXME remove BRL
 		},
 	}
 }
@@ -85,6 +85,6 @@ func (f *foxbit) ConvertToResponse(cc currency.Currency, fc currency.Currency, b
 		VolumeFiat24h:      res.Vol_brl,
 		MostRecentBidOrder: res.Buy,
 		MostRecentAskOrder: res.Sell,
-		CreatedAt: time.Now(),
+		CreatedAt:          time.Now(),
 	}, nil
 }

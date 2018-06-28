@@ -129,6 +129,6 @@ func (b *binance) ConvertToResponse(cc currency.Currency, fc currency.Currency, 
 		VolumeFiat24h:      UnsupportedField,
 		MostRecentBidOrder: bid,
 		MostRecentAskOrder: ask,
-		CreatedAt: time.Now(),
+		CreatedAt:          time.Now(),
 	}, nil
 }

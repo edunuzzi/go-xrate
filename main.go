@@ -1,11 +1,11 @@
 package main
 
 import (
+	"fmt"
 	"github.com/Swipecoin/go-xrate/lib"
 	"github.com/Swipecoin/go-xrate/lib/currency"
 	"github.com/Swipecoin/go-xrate/lib/exchanges"
 	"time"
-	"fmt"
 )
 
 func main() {

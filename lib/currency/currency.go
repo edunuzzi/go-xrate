@@ -1,8 +1,8 @@
 package currency
 
 import (
-	"math"
 	"fmt"
+	"math"
 )
 
 type Name string
@@ -27,22 +27,22 @@ func (c Currency) ToFractionalUnit(v float64) float64 {
 func GetCurrencyByAcronym(acronym string) (Currency, error) {
 
 	switch acronym {
-		case BitcoinAcronym:
-			return Bitcoin(), nil
+	case BitcoinAcronym:
+		return Bitcoin(), nil
 
-		case EthereumAcronym:
-			return Ethereum(), nil
+	case EthereumAcronym:
+		return Ethereum(), nil
 
-		case DollarAcronym:
-			return Dollar(), nil
+	case DollarAcronym:
+		return Dollar(), nil
 
-		case RealAcronym:
-			return Real(), nil
+	case RealAcronym:
+		return Real(), nil
 
-		case TetherAcronym:
-			return Tether(), nil
+	case TetherAcronym:
+		return Tether(), nil
 
-		default:
-			return Currency{}, fmt.Errorf("invalid currency acronym: %s", acronym)
+	default:
+		return Currency{}, fmt.Errorf("invalid currency acronym: %s", acronym)
 	}
 }

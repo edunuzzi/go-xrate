@@ -1,9 +1,9 @@
 package exchanges
 
 import (
+	"github.com/Swipecoin/go-xrate/lib/currency"
 	"github.com/Swipecoin/go-xrate/lib/util"
 	"time"
-	"github.com/Swipecoin/go-xrate/lib/currency"
 )
 
 const UnsupportedField float32 = -1
@@ -29,7 +29,7 @@ type Crawler struct {
 	Exchanges      []Exchange
 }
 
-func (c *Crawler) Rates(timeout time.Duration) ([]CrawlerResponse) {
+func (c *Crawler) Rates(timeout time.Duration) []CrawlerResponse {
 
 	fetch := func(resChan chan CrawlerResponse, e Exchange) {
 

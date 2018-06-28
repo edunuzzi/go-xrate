@@ -1,8 +1,8 @@
 package exchanges
 
 import (
-	"reflect"
 	"github.com/Swipecoin/go-xrate/lib/currency"
+	"reflect"
 )
 
 type ExchangeName string

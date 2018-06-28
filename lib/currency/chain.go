@@ -3,6 +3,6 @@ package currency
 type Network string
 
 type Chain struct {
-	Network Network
+	Network  Network
 	Currency Currency
 }

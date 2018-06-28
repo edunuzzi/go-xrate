@@ -1,11 +1,11 @@
 package xrate
 
 import (
-	"testing"
 	"fmt"
-	"time"
 	"github.com/Swipecoin/go-xrate/lib/currency"
 	"github.com/Swipecoin/go-xrate/lib/exchanges"
+	"testing"
+	"time"
 )
 
 // FIXME

@@ -119,6 +119,6 @@ func (m *mercadoBitcoin) ConvertToResponse(cc currency.Currency, fc currency.Cur
 		VolumeFiat24h:      UnsupportedField,
 		MostRecentBidOrder: bid,
 		MostRecentAskOrder: ask,
-		CreatedAt: time.Now(),
+		CreatedAt:          time.Now(),
 	}, nil
 }
