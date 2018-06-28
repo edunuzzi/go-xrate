@@ -16,7 +16,7 @@ It doesn't rely on any external lib :D
 
 ## Usage
 
-### BTC -> USDT - Binance
+### BTC -> USDT (Binance)
 ```golang
 crawler, _ := xrate.NewBTCCrawler(
     currency.Real(), 
@@ -42,7 +42,7 @@ fmt.Println(
 )
 ```
 
-### BTC -> BRL - Foxbit + Mercado Bitcoin
+### BTC -> BRL (Foxbit + Mercado Bitcoin)
 ```golang
 crawler, _ := xrate.NewBTCCrawler(
     currency.Real(), 
