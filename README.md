@@ -104,7 +104,7 @@ fmt.Println(
 
 ## API
 
-### `xrate.NewBTCCrawler(currency.Currency, ...exchanges.Exchange) (*exchanges.Crawler, error)`
+### `NewBTCCrawler(currency.Currency, ...exchanges.Exchange) (*exchanges.Crawler, error)`
 This is used to create new crypto crawler. It expects a fiatCurrency and the exchanges you want to fetch.
 
 PS: It will return a error if you pass it a exchange that does not support Bitcoin or the given fiat currency.
