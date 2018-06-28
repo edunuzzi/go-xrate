@@ -1,12 +1,15 @@
 # go-xrate
 
-go-xrate is a small lib for getting cryptocurrency rates from several Exchanges around the world.
+Small lib for getting cryptocurrency rates from several Exchanges around the world.
 
-## Install
+Released under the terms of the [MIT LICENSE](LICENSE).
+
+## Installation
 
 To install, just run 
-
-`go get github.com/swipecoin/go-xrate`
+```bash
+go get github.com/swipecoin/go-xrate
+```
 
 It doesn't rely on any external lib :D
   
@@ -26,82 +29,95 @@ Here's the supported list (We are constantly adding more and more):
 - BTC: Bitcoin
 
 ## Usage
-It's really simple to get started.
 
-##### First, you import the package:
-```go
-// Here we are importing from the brazilian package of exchanges
-import (
-    xrbr "go-xrate/exchanges/br"
+### BTC - USDT - Binance
+```golang
+crawler, _ := xrate.NewBTCCrawler(
+    currency.Real(), 
+    exchanges.Binance(),
+)
+	
+// Here we are fetching the rates with a 10 second timeout for each request 
+r, _ := c.Rates(time.Second * 10)
+
+// r[0] -> response from Binance
+fmt.Println(
+    r[0].Exchange,
+    r[0].CryptoCurrency,
+    r[0].FiatCurrency,
+    r[0].Last,
+    r[0].High24h,
+    r[0].Low24h,
+    r[0].Volume24h,
+    r[0].VolumeFiat24h,
+    r[0].MostRecentBidOrder,
+    r[0].MostRecentAskOrder,
+    r[0].CreatedAt,
 )
 ```
 
-##### Then, instantiate a new ExchangeCrawler and call the specific method for the cryptocurrency you want:
-```go
-// FoxBit - Bitcoin
-xrbr.NewFoxBitCrawler().BTC()
-  
-// OR 
-// Mercado Bitcoin - Bitcoin Cash
-xrbr.NewMercadoBitcoinCrawler().BCH()
- 
-// OR 
-// Mercado Bitcoin - Litecoin
-xrbr.NewMercadoBitcoinCrawler().LTC()
- 
-// OR 
-// BitcoinTrade - Bitcoin
-xrbr.NewBitcoinTradeCrawler().BTC()
- 
-// OR 
-// Bitcoin To You - Bitcoin
-xrbr.NewBitcoinToYouCrawler().BTC()
+### BTC - BRL - Foxbit + Mercado Bitcoin
+```golang
+crawler, _ := xrate.NewBTCCrawler(
+    currency.Real(), 
+    exchanges.BitcoinTrade(),
+    exchanges.Foxbit(),
+    exchanges.MercadoBitcoin(),
+)
+	
+// Here we are fetching the rates with a 10 second timeout for each request 
+r, _ := c.Rates(time.Second * 10)
+
+// r[0] -> response from BitcoinTrade
+fmt.Println(
+    r[0].Exchange,
+    r[0].CryptoCurrency,
+    r[0].FiatCurrency,
+    r[0].Last,
+    r[0].High24h,
+    r[0].Low24h,
+    r[0].Volume24h,
+    r[0].VolumeFiat24h,
+    r[0].MostRecentBidOrder,
+    r[0].MostRecentAskOrder,
+    r[0].CreatedAt,
+)
+
+// r[1] -> response from Foxbit
+fmt.Println(
+    r[1].Exchange,
+    r[1].CryptoCurrency,
+    r[1].FiatCurrency,
+    r[1].Last,
+    r[1].High24h,
+    r[1].Low24h,
+    r[1].Volume24h,
+    r[1].VolumeFiat24h,
+    r[1].MostRecentBidOrder,
+    r[1].MostRecentAskOrder,
+    r[1].CreatedAt,
+)
+
+// r[2] -> response from Mercado Bitcoin
+fmt.Println(
+    r[2].Exchange,
+    r[2].CryptoCurrency,
+    r[2].FiatCurrency,
+    r[2].Last,
+    r[2].High24h,
+    r[2].Low24h,
+    r[2].Volume24h,
+    r[2].VolumeFiat24h,
+    r[2].MostRecentBidOrder,
+    r[2].MostRecentAskOrder,
+    r[2].CreatedAt,
+)
 ```
 
-## API
-### NewFoxBitCrawler() FoxBitCrawler
-Creates and returns a new FoxBitCrawler
-
-##### Methods:
-- BTC() CryptoCurrencyTicker
-
-### NewMercadoBitcoinCrawler() MercadoBitcoinCrawler
-Creates and returns a new MercadoBitcoinCrawler
-
-##### Methods:
-- BTC() CryptoCurrencyTicker
-- LTC() CryptoCurrencyTicker
-- BCH() CryptoCurrencyTicker
-
-### NewBitcoinTradeCrawler() BitcoinTradeCrawler
-Creates and returns a new BitcoinTradeCrawler
-
-##### Methods:
-- BTC() CryptoCurrencyTicker
-
-### NewBitcoinToYouCrawler() BitcoinToYouCrawler
-Creates and returns a new BitcoinToYouCrawler
-
-##### Methods:
-- BTC() CryptoCurrencyTicker
-
-## Methods response
-All ExchangeCrawler methods return a CryptoCurrencyTicker, with fields:
-- **Acronym**: Cryptocurrency acronym. (BTC, BCH or LTC)
-- **FiatCurrencyAcronym**: Fiat currency acronym. (BRL or USD)
-- **Last**: Price of the last order
-- **High24h**: Price of the highest order in the last 24 hours
-- **Low24h**: Price of the lowest order in the last 24 hours
-- **Volume24h**: Trading volume in the last 24 hours
-- **VolumeFiat24h**: Fiat trading volume in the last 24 hours (Not supported by all)
-- **RecentBuyOrder**: Price of the most recent buy order
-- **RecentSellOrder**: Price of the most recent sell order
-
-In the case of a exchange not supporting a specific field, we fill it with a 'falsy' value. (E.g. float32 -> 0.0)
-
 ## TODO
-- [ ] More Exchanges (From both Brazil and other countries)
-- [ ] Tests
+- [ ] Report badge
+- [ ] Unit tests
+- [ ] Support more Exchanges
 - [ ] Better error handling
 - [ ] Other useful statistics from a specific cryptocurrency and/or exchange
 
