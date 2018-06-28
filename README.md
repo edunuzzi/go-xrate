@@ -174,7 +174,7 @@ Here's the currently supported list:
 
 ## TODO
 - [X] Report badge
-- [ ] Unit tests
+- [ ] Improve unit tests
 - [ ] Support more Exchanges
 - [ ] Better error handling
 - [ ] Other useful statistics from a specific cryptocurrency and/or exchange

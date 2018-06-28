@@ -1,25 +1,35 @@
 package xrate
 
 import (
-	"fmt"
+	"testing"
 	"github.com/Swipecoin/go-xrate/lib/currency"
 	"github.com/Swipecoin/go-xrate/lib/exchanges"
-	"testing"
-	"time"
+	"github.com/stretchr/testify/assert"
 )
 
-// FIXME
 func TestNewBTCCrawler(t *testing.T) {
 
-	for {
-		crawler, _ := NewBTCCrawler(currency.Real(), exchanges.Foxbit(), exchanges.BitcoinTrade())
+	t.Run("should return error if exchange does not support fiat currency", func(t *testing.T) {
+		c, err := NewBTCCrawler(currency.Real(), exchanges.Binance())
 
-		resps := crawler.Rates(0)
+		assert.NotNil(t, err)
+		assert.Empty(t, c)
 
-		for _, resp := range resps {
-			fmt.Println(resp)
-		}
+		c, err = NewBTCCrawler(currency.Real(), exchanges.Foxbit(), exchanges.Binance())
 
-		time.Sleep(2 * time.Second)
-	}
+		assert.NotNil(t, err)
+		assert.Empty(t, c)
+	})
+
+	t.Run("should successfully return a new crawler without error", func(t *testing.T) {
+		c, err := NewBTCCrawler(currency.Tether(), exchanges.Binance())
+
+		assert.Nil(t, err)
+		assert.NotEmpty(t, c)
+
+		c, err = NewBTCCrawler(currency.Real(), exchanges.Foxbit(), exchanges.BitcoinTrade())
+
+		assert.Nil(t, err)
+		assert.NotEmpty(t, c)
+	})
 }
