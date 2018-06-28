@@ -42,7 +42,7 @@ fmt.Println(
 )
 ```
 
-### BTC -> BRL (Foxbit + Mercado Bitcoin)
+### BTC -> BRL (BitcoinTrade + Foxbit + Mercado Bitcoin)
 ```golang
 crawler, _ := xrate.NewBTCCrawler(
     currency.Real(), 
