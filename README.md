@@ -15,16 +15,50 @@ It doesn't rely on any external lib :D
   
 ## Supported Exchanges
 
-As of now, only a few exchanges from Brazil and Binance are supported. But the code is prepared to work with multiple countries, fiat currencies and cryptocurrencies. 
+As of now, only a few exchanges are supported. But the code is prepared to work with multiple countries, fiat currencies and cryptocurrencies. 
 
-Here's the supported list (We are constantly adding more and more):
-- [FoxBit](https://foxbit.exchange)
-- [Mercado Bitcoin](https://mercadobitcoin.com.br) 
-- [BitcoinTrade](https://bitcointrade.com.br)
-- [Bitcoin To You](https://bitcointoyou.com)
-- [Binance](https://binance.com)
+Here's the currently supported list:
+### [Foxbit](https://foxbit.exchange)
 
-## Supported Cryptocurrencies
+#### Fiat currencies:
+- Real
+
+#### Cryptocurrencies:
+- BTC
+
+### [Mercado Bitcoin](https://mercadobitcoin.com.br)
+
+#### Fiat currencies:
+- Real
+
+#### Cryptocurrencies:
+- BTC
+
+### [BitcoinTrade](https://bitcointrade.com.br)
+
+#### Fiat currencies:
+- Real
+
+#### Cryptocurrencies:
+- BTC
+
+### [Bitcoin To You](https://bitcointoyou.com)
+
+#### Fiat currencies:
+- Real
+
+#### Cryptocurrencies:
+- BTC
+
+### [Binance](https://binance.com)
+
+#### Fiat currencies:
+- Tether
+
+#### Cryptocurrencies:
+- BTC
+
+## Supported Exchanges
 
 - BTC: Bitcoin
 
@@ -37,8 +71,8 @@ crawler, _ := xrate.NewBTCCrawler(
     exchanges.Binance(),
 )
 	
-// Here we are fetching the rates with a 10 second timeout for each request 
-r, _ := c.Rates(time.Second * 10)
+// Here we are fetching the rates with a 5 second timeout for each request 
+r, _ := crawler.Rates(time.Second * 5)
 
 // r[0] -> response from Binance
 fmt.Println(
@@ -65,8 +99,8 @@ crawler, _ := xrate.NewBTCCrawler(
     exchanges.MercadoBitcoin(),
 )
 	
-// Here we are fetching the rates with a 10 second timeout for each request 
-r, _ := c.Rates(time.Second * 10)
+// Here we are fetching the rates with a 5 second timeout for each request 
+r, _ := crawler.Rates(time.Second * 5)
 
 // r[0] -> response from BitcoinTrade
 fmt.Println(
@@ -113,6 +147,10 @@ fmt.Println(
     r[2].CreatedAt,
 )
 ```
+
+PS: The library uses goroutines for every api call. So the total time for the crawler.Rate() method is equal to the slowest Exchange API response time at that moment.
+
+## Exchanges    
 
 ## TODO
 - [ ] Report badge
