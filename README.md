@@ -30,7 +30,7 @@ Here's the supported list (We are constantly adding more and more):
 
 ## Usage
 
-### BTC - USDT - Binance
+### BTC -> USDT - Binance
 ```golang
 crawler, _ := xrate.NewBTCCrawler(
     currency.Real(), 
@@ -56,7 +56,7 @@ fmt.Println(
 )
 ```
 
-### BTC - BRL - Foxbit + Mercado Bitcoin
+### BTC -> BRL - Foxbit + Mercado Bitcoin
 ```golang
 crawler, _ := xrate.NewBTCCrawler(
     currency.Real(), 
