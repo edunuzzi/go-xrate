@@ -173,7 +173,7 @@ Here's the currently supported list:
 - BTC
 
 ## TODO
-- [ ] Report badge
+- [X] Report badge
 - [ ] Unit tests
 - [ ] Support more Exchanges
 - [ ] Better error handling
