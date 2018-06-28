@@ -1,6 +1,6 @@
 # Go-xrate
 
-Small lib for getting cryptocurrency rates from several Exchanges around the world.
+Small lib for fetching cryptocurrency rates from several Exchanges around the world.
 
 Released under the terms of the [MIT LICENSE](LICENSE).
 
