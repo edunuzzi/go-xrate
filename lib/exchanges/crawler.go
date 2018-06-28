@@ -12,13 +12,13 @@ type CrawlerResponse struct {
 	Exchange           ExchangeParams    `json:"exchange,omitempty"`
 	CryptoCurrency     currency.Currency `json:"crypto_currency,omitempty"`
 	FiatCurrency       currency.Currency `json:"fiat_currency,omitempty"`
-	Last               float32           `json:"last,omitempty"`
-	High24h            float32           `json:"high_24h,omitempty"`
-	Low24h             float32           `json:"low_24h,omitempty"`
-	Volume24h          float32           `json:"volume_24h,omitempty"`
-	VolumeFiat24h      float32           `json:"volume_fiat_24h,omitempty"`
-	MostRecentBidOrder float32           `json:"most_recent_bid_order,omitempty"`
-	MostRecentAskOrder float32           `json:"most_recent_ask_order,omitempty"`
+	Last               float64           `json:"last,omitempty"`
+	High24h            float64           `json:"high_24h,omitempty"`
+	Low24h             float64           `json:"low_24h,omitempty"`
+	Volume24h          float64           `json:"volume_24h,omitempty"`
+	VolumeFiat24h      float64           `json:"volume_fiat_24h,omitempty"`
+	MostRecentBidOrder float64           `json:"most_recent_bid_order,omitempty"`
+	MostRecentAskOrder float64           `json:"most_recent_ask_order,omitempty"`
 	CreatedAt          time.Time         `json:"created_at"`
 	Error              error             `json:"error"`
 }
