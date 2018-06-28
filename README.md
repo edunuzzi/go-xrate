@@ -106,4 +106,4 @@ In the case of a exchange not supporting a specific field, we fill it with a 'fa
 - [ ] Other useful statistics from a specific cryptocurrency and/or exchange
 
 ## Contribution
-Please feel free to contribute with both suggestions and new code :D
+Please feel free to contribute with both suggestions and pull requests :D
