@@ -1,4 +1,4 @@
-# go-xrate
+# Go-xrate
 
 Small lib for getting cryptocurrency rates from several Exchanges around the world.
 
