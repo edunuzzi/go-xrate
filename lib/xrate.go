@@ -6,9 +6,9 @@ import (
 	"github.com/Swipecoin/go-xrate/lib/exchanges"
 )
 
-func NewBTCCrawler(fiatCurrency currency.Currency, exs ...exchanges.Exchange) (*exchanges.Crawler, error) {
+func NewBTCCrawler(fiatCurrency currency.Currency, exs ...exchanges.Exchange) (exchanges.Crawler, error) {
 
-	crawler := &exchanges.Crawler{
+	crawler := exchanges.Crawler{
 		FiatCurrency:   fiatCurrency,
 		CryptoCurrency: currency.Bitcoin(),
 		Exchanges:      exs,
@@ -17,11 +17,11 @@ func NewBTCCrawler(fiatCurrency currency.Currency, exs ...exchanges.Exchange) (*
 	for _, e := range crawler.Exchanges {
 
 		if !e.SupportsCryptoCurrency(crawler.CryptoCurrency) {
-			return nil, fmt.Errorf("exchange '%s' does not support currency %s", e.GetName(), crawler.CryptoCurrency.Name)
+			return exchanges.Crawler{}, fmt.Errorf("exchange '%s' does not support currency %s", e.GetName(), crawler.CryptoCurrency.Name)
 		}
 
 		if !e.SupportsFiatCurrency(crawler.FiatCurrency) {
-			return nil, fmt.Errorf("exchange '%s' does not support currency %s", e.GetName(), crawler.FiatCurrency.Name)
+			return exchanges.Crawler{}, fmt.Errorf("exchange '%s' does not support currency %s", e.GetName(), crawler.FiatCurrency.Name)
 		}
 	}
 

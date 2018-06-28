@@ -29,14 +29,14 @@ type Crawler struct {
 	Exchanges      []Exchange
 }
 
-func (c *Crawler) Rates(timeout time.Duration) []CrawlerResponse {
+func (c Crawler) Rates(timeout time.Duration) []CrawlerResponse {
 
 	fetch := func(resChan chan CrawlerResponse, e Exchange) {
 
 		tickerUrl, err := e.GetTickerURL(c.CryptoCurrency, c.FiatCurrency)
 
 		if err != nil {
-			resChan <- nil
+			resChan <- CrawlerResponse{Error: err}
 			return
 		}
 
