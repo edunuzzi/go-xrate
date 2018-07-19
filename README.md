@@ -122,7 +122,7 @@ As of now, only a few exchanges are supported. But the code is prepared to work 
 
 Here's the currently supported list:
 
-### [Foxbit](https://foxbit.exchange)
+### [Foxbit](https://foxbit.exchange) - CURRENTLY NOT WORKING (Due to new API)
 
 #### Fiat currencies:
 - Real
@@ -172,6 +172,7 @@ Here's the currently supported list:
 
 ## TODO
 - [X] Report badge
+- [ ] Implement Foxbit new API
 - [ ] Improve unit tests
 - [ ] Support more Exchanges
 - [ ] Better error handling
