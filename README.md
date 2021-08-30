@@ -1,4 +1,4 @@
-# Go-xrate
+# Go-xrate (Unmaintained!!!)
 [![Go Report Card](https://goreportcard.com/badge/github.com/Swipecoin/go-xrate)](https://goreportcard.com/report/github.com/Swipecoin/go-xrate)
 
 Small Golang implementation for fetching cryptocurrency rates from several Exchanges around the world.
